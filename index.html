@@ -64,7 +64,7 @@
             background-color: #F8FAFC; 
             color: #1e293b; 
             scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent; /* يزيل المربع الأزرق عند الضغط في الموبايل */
+            -webkit-tap-highlight-color: transparent;
         }
 
         .text-gradient-gold {
@@ -94,20 +94,18 @@
             background-attachment: fixed;
         }
 
-        /* تنسيق الشريط السفلي للموبايل (دعم الآيفون) */
         .bottom-nav {
             padding-bottom: env(safe-area-inset-bottom);
         }
         
-        /* تفعيل اللون للعنصر النشط في تطبيق الموبايل */
         .nav-item.active {
             color: #EAB308 !important;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-gold-500 selection:text-brand-navy pb-20 md:pb-0"> <!-- pb-20 للموبايل فقط لترك مساحة للشريط السفلي -->
+<body class="antialiased selection:bg-gold-500 selection:text-brand-navy pb-20 md:pb-0">
 
-    <!-- Navbar (كمبيوتر + شعار للموبايل) -->
+    <!-- Navbar -->
     <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-4 px-6 md:px-12 bg-transparent text-white border-b border-white/10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <!-- Logo -->
@@ -119,7 +117,7 @@
                 </div>
             </a>
             
-            <!-- Desktop Menu (يظهر في الكمبيوتر فقط) -->
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8 font-bold">
                 <a href="#home" class="hover:text-gold-400 transition-colors">الرئيسية</a>
                 <a href="#services" class="hover:text-gold-400 transition-colors">خدماتنا</a>
@@ -129,7 +127,7 @@
         </div>
     </nav>
 
-    <!-- Mobile Bottom Navigation (شكل التطبيق للموبايل فقط) -->
+    <!-- Mobile Bottom Navigation -->
     <div class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-lg border-t border-slate-100 z-50 bottom-nav shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
         <div class="flex justify-around items-center h-16 px-2 relative">
             <a href="#home" class="nav-item active flex flex-col items-center justify-center w-full text-slate-400 transition-colors">
@@ -141,7 +139,6 @@
                 <span class="text-[10px] font-bold">الخدمات</span>
             </a>
             
-            <!-- زر الحجز العائم في منتصف التطبيق -->
             <a href="#booking" class="relative flex flex-col items-center justify-center w-full group">
                 <div class="absolute -top-7 bg-gold-500 text-brand-navy w-14 h-14 rounded-full flex items-center justify-center shadow-glow border-4 border-white group-active:scale-95 transition-transform">
                     <i class="fa-solid fa-calendar-check text-xl"></i>
@@ -236,10 +233,10 @@
                     </span>
                     <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight">
                         احجز الآن <br>
-                        <span class="text-gold-400">وسنعتني بكل التفاصيل</span>
+                        <span class="text-gold-400">عبر واتساب مباشرة</span>
                     </h2>
                     <p class="text-slate-300 text-sm md:text-base mb-8">
-                        قم بتعبئة النموذج وسنتواصل معك قريباً لتأكيد حجزك وتقديم أفضل العروض الحصرية.
+                        قم بتعبئة النموذج وسنقوم بتحويل طلبك فوراً إلى فريقنا عبر الواتساب لتأكيد الحجز وتقديم العروض الحصرية.
                     </p>
                 </div>
 
@@ -252,37 +249,37 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-brand-navy font-bold text-xs mb-1">الاسم الكامل</label>
-                                    <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
+                                    <input type="text" id="customerName" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
                                 </div>
                                 <div>
                                     <label class="block text-brand-navy font-bold text-xs mb-1">رقم الهاتف</label>
-                                    <input type="tel" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none" dir="ltr" placeholder="09X XXX XXXX">
+                                    <input type="tel" id="customerPhone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none" dir="ltr" placeholder="09X XXX XXXX">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-brand-navy font-bold text-xs mb-1">نوع الخدمة المطلوبة</label>
-                                <select required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none appearance-none font-medium">
+                                <select id="serviceType" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none appearance-none font-medium">
                                     <option value="" disabled selected>اختر الخدمة...</option>
-                                    <option value="flight">حجز طيران</option>
-                                    <option value="visa">استخراج تأشيرة</option>
-                                    <option value="group">قروب سياحي</option>
-                                    <option value="hotel">حجز فندقي</option>
+                                    <option value="حجز طيران">حجز طيران</option>
+                                    <option value="استخراج تأشيرة">استخراج تأشيرة</option>
+                                    <option value="قروب سياحي">قروب سياحي</option>
+                                    <option value="حجز فندقي">حجز فندقي</option>
                                 </select>
                             </div>
 
                             <button type="submit" class="w-full bg-gold-500 text-brand-navy font-black text-base py-4 rounded-xl mt-2 active:scale-95 transition-transform flex justify-center items-center gap-2">
-                                <span>تأكيد الطلب</span>
-                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>إرسال الطلب عبر واتساب</span>
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
                             </button>
                         </form>
                         
                         <!-- Success Message -->
                         <div id="successMessage" class="hidden absolute inset-0 bg-white/95 backdrop-blur-md z-20 flex flex-col items-center justify-center rounded-3xl p-6 text-center">
-                            <i class="fa-solid fa-circle-check text-6xl text-green-500 mb-4"></i>
-                            <h3 class="text-2xl font-black text-brand-navy mb-2">تم استلام طلبك!</h3>
-                            <p class="text-slate-600 mb-6 text-sm font-medium">سيتواصل معك فريقنا قريباً جداً.</p>
-                            <button onclick="resetForm()" class="bg-brand-navy text-white px-8 py-2.5 rounded-full font-bold">إغلاق</button>
+                            <i class="fa-brands fa-whatsapp text-6xl text-green-500 mb-4"></i>
+                            <h3 class="text-2xl font-black text-brand-navy mb-2">جاري تحويلك...</h3>
+                            <p class="text-slate-600 mb-6 text-sm font-medium">سيتم فتح تطبيق الواتساب الآن لإتمام حجزك.</p>
+                            <button onclick="resetForm()" class="bg-brand-navy text-white px-8 py-2.5 rounded-full font-bold">رجوع</button>
                         </div>
                     </div>
                 </div>
@@ -307,7 +304,7 @@
                 <div class="flex justify-center md:justify-start gap-3">
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://wa.me/218931848586" target="_blank" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:text-green-500 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
             
@@ -324,8 +321,8 @@
                 <h4 class="text-brand-navy font-bold mb-5">تواصل معنا</h4>
                 <ul class="flex flex-col gap-3 text-sm text-slate-500 font-medium items-center md:items-start">
                     <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-gold-500"></i> طرابلس - النوفليين</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-globe text-gold-500"></i> <a href="http://alfawz-travel.ly/" dir="ltr">alfawz-travel.ly</a></li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-gold-500"></i> <a href="mailto:info@alfawz-travel.ly">info@alfawz-travel.ly</a></li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-gold-500"></i> <a href="tel:+218931848586" dir="ltr">+218 93 184 8586</a></li>
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-gold-500"></i> <a href="https://wa.me/218931848586" target="_blank">تواصل عبر واتساب</a></li>
                 </ul>
             </div>
         </div>
@@ -341,7 +338,6 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // تأثير الشريط العلوي للكمبيوتر والشعار للموبايل
         const navbar = document.getElementById('navbar');
         const logoText = document.getElementById('logo-text');
 
@@ -355,7 +351,6 @@
                 navbar.classList.add('bg-transparent', 'border-white/10', 'py-4');
             }
             
-            // تفعيل أيقونات تطبيق الموبايل السفلية حسب التمرير
             let current = '';
             const sections = document.querySelectorAll('section, footer');
             sections.forEach(section => {
@@ -373,17 +368,35 @@
             });
         });
 
-        // محاكاة زر الحجز
+        // دالة ربط الحجز بالواتساب
         function handleBooking(event) {
             event.preventDefault(); 
+            
+            // جلب البيانات من النموذج
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const serviceSelect = document.getElementById('serviceType');
+            const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+            
+            // تنسيق الرسالة
+            const message = `مرحباً الفوز للسياحة، أرغب في الاستفسار عن حجز:\n\n👤 الاسم: ${name}\n📞 رقم الهاتف: ${phone}\n✈️ الخدمة المطلوبة: ${service}`;
+            
+            // تحويل الرسالة لصيغة رابط
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = "218931848586"; // رقم الواتساب مع المفتاح الدولي بدون أصفار أو علامة +
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // تغيير حالة الزر
             const btn = event.target.querySelector('button[type="submit"]');
             const originalContent = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري الإرسال...';
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري التحويل...';
             
+            // إظهار رسالة النجاح وفتح الواتساب
             setTimeout(() => {
                 document.getElementById('successMessage').classList.remove('hidden');
                 btn.innerHTML = originalContent; 
-            }, 1200);
+                window.open(whatsappUrl, '_blank'); // يفتح الواتساب في نافذة جديدة أو التطبيق
+            }, 800);
         }
 
         function resetForm() {
